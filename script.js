@@ -44,27 +44,11 @@ document.getElementById('sizeForm').addEventListener('submit', function(e) {
     }
 
     if (typeof recommendedWidth !== 'string' && typeof recommendedDepth !== 'string') {
-        const sideSupportCounts = {};
+        const sideSupportWidth = recommendedWidth;
+        const sideSupportDepth = recommendedDepth;
 
-        const addSupportCount = (size) => {
-            if (sideSupportCounts[size]) {
-                sideSupportCounts[size]++;
-            } else {
-                sideSupportCounts[size] = 1;
-            }
-        };
-
-        if (recommendedWidth >= 800) {
-            addSupportCount(recommendedWidth);
-        }
-        const sideSupportDepthCount = Math.ceil(recommendedDepth / 400);
-        for (let i = 0; i < sideSupportDepthCount; i++) {
-            addSupportCount(recommendedDepth);
-        }
-
-        for (const [size, count] of Object.entries(sideSupportCounts)) {
-            resultMessage += `+ ${size}측면보강대 ${count}개\n`;
-        }
+        resultMessage += `+ ${sideSupportWidth}측면보강대 1개\n`;
+        resultMessage += `+ ${sideSupportDepth}측면보강대 2개\n`;
     }
 
     resultMessage += "\n가로와 깊이 사이즈는 외경 1.5cm의 여유공간이 필요합니다.";

@@ -8,7 +8,7 @@ document.getElementById('sizeForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const width = parseInt(document.getElementById('width').value) + 60;
-    const depth = parseInt(document.getElementById('depth').value) + 60;
+    const depth = parseInt(document.getElementById('depth').value);
     let height = parseInt(document.getElementById('height').value) + 120;
     const tiers = parseInt(document.getElementById('tiers').value);
 
@@ -44,14 +44,26 @@ document.getElementById('sizeForm').addEventListener('submit', function(e) {
     }
 
     if (typeof recommendedWidth !== 'string' && typeof recommendedDepth !== 'string') {
-        const sideSupportWidth = recommendedWidth >= 800 ? 1 : 0;
-        const sideSupportDepth = Math.ceil(recommendedDepth / 400);
+        const sideSupportCounts = {};
 
-        if (sideSupportWidth) {
-            resultMessage += `+ ${recommendedWidth}측면보강대 ${sideSupportWidth}개\n`;
+        const addSupportCount = (size) => {
+            if (sideSupportCounts[size]) {
+                sideSupportCounts[size]++;
+            } else {
+                sideSupportCounts[size] = 1;
+            }
+        };
+
+        if (recommendedWidth >= 800) {
+            addSupportCount(recommendedWidth);
         }
-        if (sideSupportDepth) {
-            resultMessage += `+ ${recommendedDepth}측면보강대 ${sideSupportDepth}개\n`;
+        const sideSupportDepthCount = Math.ceil(recommendedDepth / 400);
+        for (let i = 0; i < sideSupportDepthCount; i++) {
+            addSupportCount(recommendedDepth);
+        }
+
+        for (const [size, count] of Object.entries(sideSupportCounts)) {
+            resultMessage += `+ ${size}측면보강대 ${count}개\n`;
         }
     }
 

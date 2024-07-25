@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세탁기(건조기) 선반 사이즈 계산기</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>세탁기(건조기) 선반 사이즈 계산기</h1>
+    </div>
+    <div class="container">
+        <div class="instruction">
+            세탁기(건조기)의 사이즈를 빈칸에 입력해주세요!
+        </div>
+        <form id="sizeForm">
+            <label for="width">가로(폭) (mm):</label>
+            <input type="number" id="width" name="width" required>
+            
+            <label for="depth">세로(깊이) (mm):</label>
+            <input type="number" id="depth" name="depth" required>
+            
+            <label for="height">높이 (mm):</label>
+            <input type="number" id="height" name="height" required>
+            
+            <label for="tiers">단 수 (2-7):</label>
+            <input type="number" id="tiers" name="tiers" min="2" max="7" required>
+            
+            <button type="submit">계산하기</button>
+        </form>
+        <div id="result"></div>
+        <a href="https://smartstore.naver.com/krykhm/products/8789409834" class="return-button">페이지로 돌아가기</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
